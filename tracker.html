@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daily Goal Tracker</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -20,22 +21,84 @@
     </div>
   </header>
 
-  <div class="add-form">
-    <input type="text" id="titel" placeholder="New goal...">
-    <input type="number" id="goal" placeholder="0">
-    <button class="js-add-btn">+</button>
+  <div class="menu-overlay js-menu-overlay">
+    <nav class="menu-nav">
+      <a id="start" class="menu-link">Startseite</a>
+      <a id="history" class="menu-link">History</a>
+      <a id="einstellungen" class="menu-link">Einstellungen</a>
+    </nav>
+    </div>
+
+  <div id="goals-page" class="page-section">
+    <div class="add-form">
+      <input type="text" id="titel" placeholder="New goal...">
+      <input type="number" id="goal" placeholder="0">
+      <button class="js-add-btn">+</button>
+    </div>
+    <p class="section-label">Your goals</p>
+    <ul class="goals-ul"></ul>
   </div>
 
-  <p class="section-label">Your goals</p>
-  <ul></ul>
+  <div id="history-page" class="page-section hidden">
+    <div class="history-header">
+      
+      <div class="view-filter-container">
+        <div class="toggle-slider js-toggle-slider"></div>
+        <button id="js-übersicht-btn" class="filter-btn active" data-view="heatmap">Übersicht</button>
+        <button id="js-details-btn" class="filter-btn" data-view="detail">Details</button>
+      </div>
 
-  <div class="menu-overlay js-menu-overlay">
-  <nav class="menu-nav">
-    <a id="history" class="menu-link">History</a>
-    <a href="#" class="menu-link">Statistiken</a>
-    <a href="#" class="menu-link">Einstellungen</a>
-  </nav>
-</div>
+      <div class="time-filter-container js-time-filter hidden">
+        <button class="time-btn active js-all">Alle</button>
+        <button class="time-btn js-week">Diese Woche</button>
+        <button class="time-btn js-month">Dieser Monat</button>
+        <button class="time-btn js-three-month">Letzte 3 Monate</button>
+      </div>
+      
+    </div>
+
+    <div class="view-content">
+      <div id="view-heatmap" class="history-view">
+        <div class="heatmap-header">
+          <span class="heatmap-title">Aktivität</span>
+          <div class="heatmap-legend">
+            <span>Weniger</span>
+            <div class="heatmap-legend-boxes">
+              <span class="level-0"></span>
+              <span class="level-1"></span>
+              <span class="level-2"></span>
+              <span class="level-3"></span>
+              <span class="level-4"></span>
+            </div>
+            <span>Mehr</span>
+          </div>
+        </div>
+
+        <div class="heatmap-main-wrapper">
+          <div class="heatmap-weekdays">
+            <span>Mo</span>
+            <span>Di</span>
+            <span>Mi</span>
+            <span>Do</span>
+            <span>Fr</span>
+            <span>Sa</span>
+            <span>So</span>
+          </div>
+
+          <div id="heatmap-months-container" class="heatmap-months-container">
+            </div>
+        </div>
+      </div>
+      
+      <div id="view-detail" class="history-view hidden">
+        <ul class="history-ul"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="einstellungen-page" class="page-section hidden">
+
+  </div>
   <script type="module" src="app.js"></script>
 </body>
 </html>

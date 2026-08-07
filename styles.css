@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+ 
  
 *, *::before, *::after {
   box-sizing: border-box;
@@ -372,4 +375,467 @@ li.done .progress-bar-fill {
 .update-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.page-section.hidden{
+  display: none;
+}
+
+
+.history-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  gap: 30px;
+  margin-bottom: 35px;   
+}
+
+.view-filter-container{
+  display: flex;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  padding: 4px;
+  border-radius: 20px; 
+  position: relative;
+  width: 260px; }
+
+.filter-btn{
+   font-family: 'Google Sans';
+  flex: 1;
+  background: none;
+  border: none;
+  color: #888888;
+  padding: 10px 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  z-index: 2; 
+  transition: color 0.25s ease;
+}
+
+.filter-btn:hover{
+  color: white;
+}
+
+.filter-btn.active{
+ color: var(--accent);
+font-weight: 600;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(50% - 4px); 
+  height: calc(100% - 8px);
+  border: 1px solid var(--accent); 
+  border-radius: 16px;
+  z-index: 1;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.view-filter-container.show-details .toggle-slider {
+  transform: translateX(100%);
+}
+
+
+.time-filter-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.time-btn {
+  background-color: #111;
+  border: 1px solid #222;
+  color: #888;
+  padding: 6px 12px;
+  border-radius: 20px; 
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Google Sans';
+}
+
+.time-btn:hover {
+  color: #fff;
+  border-color: #444;
+}
+
+.time-btn.active {
+  background-color: #fff;
+  color: #000;
+  border-color: #fff;
+  font-weight: bold;
+}
+
+.history-view.hidden{
+  display: none;
+}
+
+
+.history-date-group {
+  margin-bottom: 30px;
+}
+
+
+.history-date-title {
+  color: #666666;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  padding-left: 4px;
+}
+
+.history-cards-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+}
+
+
+.history-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0b0b0b;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+
+.history-card-title {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize; 
+}
+
+
+.history-card-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+
+.history-progress-wrap {
+  width: 90px;
+  height: 6px;
+  background-color: #1a1a1a;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+
+.history-progress-fill {
+  height: 100%;
+  background-color: var(--accent); 
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+
+.history-progress-text {
+  font-size: 0.9rem;
+  color: #444444; 
+  font-weight: 500;
+  min-width: 65px;
+  text-align: right;
+}
+
+
+.history-achieved {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.history-goal {
+  color: #555555;
+}
+
+
+
+
+
+/* --- TIMELINE CONTAINER --- */
+.history-date-group {
+  position: relative;
+  padding-left: 28px; /* Platz für die vertikale Linie & Punkte */
+  margin-bottom: 35px;
+}
+
+/* Die vertikale durchgehende Linie links */
+.history-date-group::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: -25px; /* Reicht bis zum nächsten Tag */
+  left: 7px;
+  width: 2px;
+  background-color: #1a1a1a; /* Feines Dunkelgrau */
+}
+
+/* Verhindert, dass die Linie beim allerletzten Element weitergeht */
+.history-date-group:last-child::before {
+  bottom: 0;
+}
+
+/* Der leuchtende Punkt auf der Linie neben der Datums-Überschrift */
+.history-date-group::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #26ff44; /* Neon-Grün */
+  box-shadow: 0 0 8px rgba(38, 255, 68, 0.6); /* Grünes Glow-Level */
+  z-index: 2;
+}
+
+/* Datums-Überschrift */
+.history-date-title {
+  color: #888888;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+/* Cards Liste */
+.history-cards-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* --- DYNAMISCHE DYNAMIK & FARBEN DER CARDS --- */
+.history-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0b0b0b;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+
+.history-card-title {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.history-card-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.history-progress-wrap {
+  width: 90px;
+  height: 6px;
+  background-color: #1a1a1a;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.history-progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.history-progress-text {
+  font-size: 0.88rem;
+  font-weight: 500;
+  min-width: 65px;
+  text-align: right;
+}
+
+.history-card.status-done .history-progress-fill {
+  background-color: var(--accent); 
+  box-shadow: 0 0 6px rgba(38, 255, 68, 0.4);
+}
+.history-card.status-done .history-achieved {
+  color: var(--accent);
+  font-weight: 600;
+}
+.history-card.status-done .history-goal {
+  color: #555;
+}
+
+
+.history-card.status-progress .history-progress-fill {
+  background-color: #ffffff; 
+}
+.history-card.status-progress .history-achieved {
+  color: #ffffff;
+}
+.history-card.status-progress .history-goal {
+  color: #555;
+}
+
+.history-card.status-empty .history-progress-fill {
+  background-color: #222222; 
+}
+.history-card.status-empty .history-achieved {
+  color: #444444;
+}
+.history-card.status-empty .history-goal {
+  color: #333333;
+}
+
+/*Test*/
+
+/* --- HEATMAP STYLING (HEAT.JS LOOK) --- */
+#view-heatmap {
+  background-color: #0b0b0b;
+  border: 1px solid #1a1a1a;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+}
+
+.heatmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.heatmap-title {
+  color: #888888;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: #555555;
+}
+
+.heatmap-legend-boxes {
+  display: flex;
+  gap: 4px;
+}
+
+.heatmap-legend-boxes span {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* Haupt-Layout: Links Tage, Rechts Monate */
+.heatmap-main-wrapper {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+/* Scrollbar für das Raster */
+.heatmap-main-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+.heatmap-main-wrapper::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 3px;
+}
+
+/* Wochentags-Spalte links */
+.heatmap-weekdays {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 28px; /* Platz für Monatsüberschrift */
+  font-size: 0.72rem;
+  color: #666666;
+  font-weight: 600;
+  font-family: 'Space Mono', monospace;
+}
+
+.heatmap-weekdays span {
+  height: 16px; /* Exakt gleiche Höhe wie die Grid-Kästchen */
+  line-height: 16px;
+}
+
+/* Container für alle Monats-Blöcke */
+.heatmap-months-container {
+  display: flex;
+  gap: 18px; /* Abstand zwischen den einzelnen Monaten */
+}
+
+/* Einzelner Monat (Titel + 7-Zeilen Grid) */
+.heatmap-month-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.heatmap-month-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #888888;
+  font-family: 'Space Mono', monospace;
+}
+
+.heatmap-month-grid {
+  display: grid;
+  grid-template-rows: repeat(7, 16px); /* 7 Tage untereinander, 16px hoch */
+  grid-auto-flow: column;
+  grid-auto-columns: 16px;            /* 16px breit */
+  gap: 6px;                           /* Großzügiger Abstand zwischen Quadrate */
+}
+
+/* Das einzelne Quadrat (Heat.js Style) */
+.heatmap-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background-color: #151515;
+  transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.heatmap-box:hover {
+  transform: scale(1.35);
+  z-index: 10;
+}
+
+/* Aktivitätsstufen (Auffälliger Neon-Look) */
+.level-0 { background-color: #151515; }
+.level-1 { background-color: #0e4429; }
+.level-2 { background-color: #006d32; }
+.level-3 { background-color: #26a641; }
+.level-4 { 
+  background-color: #26ff44; 
+  box-shadow: 0 0 10px rgba(38, 255, 68, 0.6); 
+}
+
+.history-view.hidden {
+  display: none !important;
+}
+
+.time-filter-container.hidden{
+  display: none;
 }

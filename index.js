@@ -306,7 +306,7 @@ async function saveToHistory(userId) {
     const uId = ziel.userid || ziel.userId;
     await db.query(
       'INSERT INTO history (titel, goal, date, "userId", achieved, done) VALUES ($1, $2, $3, $4, $5, $6)', 
-      [ziel.titel, ziel.goal, date, uId, ziel.achieved, ziel.done]
+      [ziel.titel, ziel.goal, ziel.date, uId, ziel.achieved, ziel.done]
     );
   }
 }
